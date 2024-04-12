@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Join from "./routes/Join"
 import Login from "./routes/Login"
 import Main from "./routes/Main"
@@ -9,11 +9,13 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Route path="/" exact component={Login}/>
-        <Route path="/Join" component={Join}/>
-        <Route path="/main" component={Main}/>
-        <Route path="/myorder" component={MyOrder}/>
-        <Route path="/order" component={Order}/>
+        <Routes>
+          <Route path="/" Component={Login}/>
+          <Route path="/Join" Component={Join}/>
+          <Route path="/main" Component={Main}/>
+          <Route path="/myorder" Component={MyOrder}/>
+          <Route path="/order" Component={Order}/>
+        </Routes>
       </Router>
     </div>
   );

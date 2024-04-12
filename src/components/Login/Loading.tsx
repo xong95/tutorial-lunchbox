@@ -8,7 +8,7 @@ export default function Loading() {
                 <div>
                     <img src="/lunch-box.png" height="250" alt="@@도시락 아이콘"/>
                 </div>
-                <h1>@@도시락</h1>
+                <h1>lunchbox</h1>
             </div>
         </>
     )

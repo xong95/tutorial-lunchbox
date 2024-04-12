@@ -1,7 +1,11 @@
+import "./Footer.css"
 export default function Footer() {
     return (
         <>
-            <h1>Footer</h1>
+            <div className="footerContainer">
+                <div>(주)lunchbox</div>
+                <div>All right reserved</div>
+            </div>
         </>
     )
 }
