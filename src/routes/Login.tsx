@@ -22,6 +22,8 @@ export default function Login() {
     // 주요 로직에 주의
     const [runLogin, setRunLogin] = useState(false);
     // LoginFailAlert 컴포넌트 플래그
+    // LoginFailAlert 컴포넌트는 로그인화면 맨 위에 뜨는 경고창이며
+    // 상세한 설명은 LoginFailAlert 컴포넌트에서 참고
     // RunLogin 컴포넌트에서 컨트롤 한다.
     const [failedAlarm, setFailedAlarm] = useState(false);
     // 현재 컴포넌트인 Login 에서 로그인 성공시 /main 으로 가기위한 리다이렉트 플래그
@@ -30,6 +32,10 @@ export default function Login() {
 
     //첫 화면은 로딩화면 이었는데
     // 3초후 꺼지고 로그인화면을 띄운다
+    // 삼항연산자를 사용하였으므로
+    // loading 플래그가
+    // true 일땐 로딩화면
+    // false 일땐 로그인 화면
     setTimeout(() => {
         setLoading(false);
     }, 3000);

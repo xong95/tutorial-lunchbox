@@ -22,6 +22,8 @@ export default function RunLogin({id, passwd, setRunLogin, setFailedAlarm, goMai
         variables : { userId : id }
     });
     useEffect(() => {
+        //여기서 말하는 로딩은, 로딩페이지 플래그가 아님
+        //데이터가 아직 백엔드에서 들어오지 않았다는 플래그
         if(!loading) {
             if(data.personByUserId === null) {
                 setFailedAlarm(true);
@@ -30,11 +32,12 @@ export default function RunLogin({id, passwd, setRunLogin, setFailedAlarm, goMai
                 //몇초뒤 알람꺼지고 런 로그인을끈다
             } else if(passwd !== data.personByUsreId.password) {
                 setFailedAlarm(true);
-                setRunLogin(false);
+                setRunLogin(false); //이컴포넌트 자체를 끄는 플래그
                 //로그인 실패 알람을 띄운다
                 //몇초뒤 알람꺼지고
                 //런 로그인을 끈다
             } else {
+                //로그인 성공시
                 goMain()
             }
     

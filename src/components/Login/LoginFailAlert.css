@@ -1,3 +1,7 @@
+/* 반드시 position을 absolute 로 지정해야 화면의 레이아웃에 방해가 안됨 
+    앱솔루트로 했기 때문에, 반드시 width 를 100% 로 처리가 필요
+*/
+
 .alert {
     position: absolute;
     width: 100%;
