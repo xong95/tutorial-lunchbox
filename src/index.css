@@ -1,6 +1,9 @@
+/* 전체 색깔 지정 */
 body{
     background-color: #F0F8FF;
 }
+
+/* 전체 화면의 레이아웃 잡을때 사용 */
 .fullsize{
     min-height: 100vh;
     display: grid;
