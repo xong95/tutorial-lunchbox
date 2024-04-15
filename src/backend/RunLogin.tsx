@@ -6,7 +6,7 @@ interface PropTypes{
     passwd:string;
     setRunLogin:(flag:boolean) => void;
     setFailedAlarm: (flag:boolean) => void;
-    offFailedAlarm : () => void;
+    goMain : () => void;
 }
 
 const GET_USER_INFO = gql`
@@ -17,7 +17,7 @@ const GET_USER_INFO = gql`
     }
 `;
 
-export default function RunLogin({id, passwd, setRunLogin, setFailedAlarm, offFailedAlarm}:PropTypes){
+export default function RunLogin({id, passwd, setRunLogin, setFailedAlarm, goMain}:PropTypes){
     const { loading, data } = useQuery(GET_USER_INFO, {
         variables : { userId : id }
     });
@@ -25,19 +25,17 @@ export default function RunLogin({id, passwd, setRunLogin, setFailedAlarm, offFa
         if(!loading) {
             if(data.personByUserId === null) {
                 setFailedAlarm(true);
-                offFailedAlarm();
                 setRunLogin(false);
                 //로그인실패 알람 띄운다
                 //몇초뒤 알람꺼지고 런 로그인을끈다
             } else if(passwd !== data.personByUsreId.password) {
                 setFailedAlarm(true);
-                offFailedAlarm();
                 setRunLogin(false);
                 //로그인 실패 알람을 띄운다
                 //몇초뒤 알람꺼지고
                 //런 로그인을 끈다
             } else {
-                //goMain()
+                goMain()
             }
     
             //Warnoing : Cannot  update a component while rendering.....
