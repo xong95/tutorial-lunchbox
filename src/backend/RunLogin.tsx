@@ -41,8 +41,8 @@ export default function RunLogin({id, passwd, setRunLogin, setFailedAlarm, goMai
                 goMain()
             }
     
-            //Warnoing : Cannot  update a component while rendering.....
-            //1번째 방법 : 내가 혹시 이벤트를 잘못 쓰지 않았나
+            //Warning : Cannot  update a component while rendering.....
+            //1번째 방법 : 이벤트를 잘못 쓰지 않았나
             //2번째 방법 : 문제가 되는 부분을 useEffect() 로 감싸라
         }
     })
