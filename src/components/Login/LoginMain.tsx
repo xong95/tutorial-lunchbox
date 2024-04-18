@@ -36,9 +36,9 @@ export default function LoginMain({id, passwd, setId, setPasswd, login}: PropTyp
                         <label htmlFor="passwdInput">Password</label>
                     </div>
                     <div className="buttionContainer">
-                    <div className="d-grid gap-2">
-                        <button onClick={login} className="loginButton btn btn-primary" type="button">Login</button>
-                    </div>
+                        <div className="d-grid gap-2">
+                            <button onClick={login} className="loginButton btn btn-primary" type="button">Login</button>
+                        </div>
                     </div>
                 </section>
                 <section className="wannaJoin">

@@ -1,3 +1,4 @@
+import { gql, useMutation } from "@apollo/client";
 import "./IdAndPasswordDefaultAdress.css";
 
 interface PropTypes {
@@ -9,6 +10,27 @@ interface PropTypes {
   setAddress: (address: string) => void;
   alarmOn: () => void;
 }
+
+const SET_USER = gql`
+  mutation createPerson(
+    $userId: String!
+    $password: String!
+    $defaultAddress: String!
+  ) {
+    createPerson(
+      input: {
+        person: {
+          userId: $userId
+          password: $password
+          defaultAddress: $defaultAddress
+        }
+      }
+    ) {
+      clientMutationId
+    }
+  }
+`;
+
 export default function IdAndPasswordDefaultAdress({
   id,
   setId,
@@ -16,18 +38,29 @@ export default function IdAndPasswordDefaultAdress({
   setPassword,
   address,
   setAddress,
-  alarmOn
+  alarmOn,
 }: PropTypes) {
-  const setUser = () => {
-
-  }
-  const join = () => {
-    if(id !== ""  && password !== "") {
-      setUser();
-    } else {
-      alarmOn()
+  //useMutation 으로부터 만들어진 setUser 라는 함수를 사용
+  const [setUser, {data}] = useMutation(SET_USER, {
+    //에러 핸들러
+    onError: () => {
+      alarmOn();
     }
-  }
+  });
+
+  const join = () => {
+    if (id !== "" && password !== "") {
+      setUser({
+        variables:{
+          userId :id,
+          password : password,
+          defaultAddress : address
+        }
+      });
+    } else {
+      alarmOn();
+    }
+  };
   return (
     <>
       <div className="idAndPasswordDefaultAddress">
