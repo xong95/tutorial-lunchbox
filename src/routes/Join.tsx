@@ -1,6 +1,6 @@
 // 회원가입을 담당하는 라우트
 import { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import IdAndPasswordDefaultAdress from "../components/Join/IdAndPasswordDefaultAdress";
 import JoinFailAlert from "../components/Join/JoinFailAlert";
 import Footer from "../components/Footer";
@@ -51,9 +51,11 @@ export default function Join() {
         )}
         <Footer />
         {goMainFlag && (
-          <Redirect
+          <Navigate
             to={{
               pathname: "/main",
+            }}
+            state={{
               state: {
                 idFromLogin: id,
               },

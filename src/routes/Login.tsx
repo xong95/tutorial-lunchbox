@@ -5,7 +5,9 @@ import Loading from "../components/Login/Loading";
 import LoginMain from "../components/Login/LoginMain";
 import RunLogin from "../backend/RunLogin";
 import LoginFailAlert from "../components/Login/LoginFailAlert";
-import { Redirect } from "react-router";
+//react-router-dom 이 V5 -> V6 로 버전업되면서 useNavigate() Hook 또는 <Navigate/> 로변경
+// import { Redirect } from "react-router";
+import { Navigate } from "react-router";
 
 export default function Login() {
   const [loading, setLoading] = useState(true); // 로딩페이지 보여주는 플레그
@@ -94,11 +96,13 @@ export default function Login() {
         />
       )}
       {goMainFlag && (
-        <Redirect
+        <Navigate
           to={{
             pathname: "/main",
+          }}
+          state={{
             state: {
-              iFromLogin: id,
+              idFromLogin: id,
             },
           }}
         />
