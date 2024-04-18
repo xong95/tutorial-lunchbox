@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { gql, useMutation } from "@apollo/client";
 import "./IdAndPasswordDefaultAdress.css";
 
@@ -9,6 +10,7 @@ interface PropTypes {
   setPassword: (password: string) => void;
   setAddress: (address: string) => void;
   alarmOn: () => void;
+  setGoMainFlag: (flag: boolean) => void;
 }
 
 const SET_USER = gql`
@@ -39,28 +41,35 @@ export default function IdAndPasswordDefaultAdress({
   address,
   setAddress,
   alarmOn,
+  setGoMainFlag,
 }: PropTypes) {
   //useMutation 으로부터 만들어진 setUser 라는 함수를 사용
-  const [setUser, {data}] = useMutation(SET_USER, {
+  const [setUser, { data }] = useMutation(SET_USER, {
     //에러 핸들러
     onError: () => {
       alarmOn();
-    }
+    },
   });
 
   const join = () => {
     if (id !== "" && password !== "") {
       setUser({
-        variables:{
-          userId :id,
-          password : password,
-          defaultAddress : address
-        }
+        variables: {
+          userId: id,
+          password: password,
+          defaultAddress: address,
+        },
       });
     } else {
       alarmOn();
     }
   };
+  useEffect(() => {
+    if (data) {
+      setGoMainFlag(true);
+    }
+  });
+
   return (
     <>
       <div className="idAndPasswordDefaultAddress">
